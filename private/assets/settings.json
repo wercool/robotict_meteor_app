@@ -1,0 +1,30 @@
+[
+    {
+        "sub": "Robot",
+        "cond": [
+            {
+                "value": 3.0
+            }
+        ]
+    },
+    {
+        "sub": "ICT",
+        "cond": [
+            {
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "sub": "RobotICT",
+        "cond": [
+            {
+                "value": 3.0
+            },
+            {
+                "op": "&",
+                "value": 5.0
+            }
+        ]
+    }
+]

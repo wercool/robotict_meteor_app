@@ -1,0 +1,72 @@
+[
+    {
+        "name": "default",
+        "root_layout": {
+            "backgroundColor": "#eaeaea",
+            "color": "#4b4a4a"
+        },
+        "header": {},
+        "footer": {
+            "backgroundColor": "#5f5f5f",
+            "color": "#e1e1e1"
+        },
+        "table": {
+            "container": {
+                "backgroundColor": "#ffffee"
+            },
+            "head": {
+                "borderBottom": "solid 1px #cccccc"
+            },
+            "footer": {
+                "backgroundColor": "#b0b0b0"
+            }
+        },
+        "link": {
+            "generic": {
+                "color": "#606060",
+                "textDecoration": "none"
+            }
+        },
+        "select": {
+            "generic": {
+                "backgroundColor": "#b0b0b0",
+                "color": "#101010"
+            }
+        }
+    },
+    {
+        "name": "dark",
+        "root_layout": {
+            "backgroundColor": "#5f5f5f",
+            "color": "#e1e1e1"
+        },
+        "header": {},
+        "footer": {
+            "backgroundColor": "#808080",
+            "color": "#fafafa"
+        },
+        "table": {
+            "container": {
+                "backgroundColor": "#808080",
+                "color": "#ffffff",
+                "fontWeight": "700"
+            },
+            "head": {
+                "borderBottom": "solid 1px #cccccc",
+                "backgroundColor": "#808080"
+            }
+        },
+        "button": {
+            "generic": {
+                "backgroundColor": "#606060",
+                "color": "#e1e1e1"
+            }
+        },
+        "link": {
+            "generic": {
+                "color": "#fafafa",
+                "textDecoration": "none"
+            }
+        }
+    }
+]

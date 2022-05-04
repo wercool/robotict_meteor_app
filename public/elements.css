@@ -1,0 +1,105 @@
+select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance: none;
+
+    height: 20px;
+    padding: 0 28px 0 8px;  
+    border: none;
+    outline: 0;
+    font-size: 0.75rem;
+    border-radius: 0;
+    margin: 1px 4px 1px 1px;
+    color: #eeeeee;
+
+    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23eeeeee%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E') no-repeat, #fff;
+    background-position: 98% 50%;
+    background-size: 8px;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+option:not(first-child) {
+    font-size: 0.75rem;
+    color: #000;
+    background: rgba(0, 0, 0, 0.3);
+    color: rgb(65, 65, 65);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 4px;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 0, 145, 0.25) !important;
+}
+
+tbody tr:nth-child(even){
+    background-color: #b8b8b865;
+}
+
+th {
+    padding: 5px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: default;
+}
+
+td {
+  padding: 5px;
+  font-size: 0.75rem;
+}
+
+tfoot td {
+    width: 100%;
+    padding: 6px;
+}
+
+tfoot td > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+button {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+
+button.selected {
+    font-weight: 700;
+    border: solid 1px rgba(0, 135, 139, 0.5);
+    box-shadow: 1px 1px 2px rgba(0, 135, 139, 0.5);
+}
+
+button:hover {
+    box-shadow: 1px 1px 2px rgba(0, 0, 145, 0.25) !important;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+input[type=number] {
+    max-width: 60px;
+}

@@ -1,32 +1,52 @@
 import React, { useState, useCallback, useReducer, useEffect } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
+import uniqid from 'uniqid';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { SettingsCollection } from '../../../api/settings';
 import { SettingDisplay } from './SettingDisplay';
 import { SettingEdit } from './SettingEdit';
 
 export const Settings = () => {
-    const settings = useTracker(() => SettingsCollection.find({}).fetch());
+    const display_rules_setting = useTracker(() => SettingsCollection.findOne({ name: 'display_rules' }));
 
     const [editedSetting, setEditedSetting] = useState(null);
     const [createdSetting, setCreatedSetting] = useState(null);
     const [, setRefershUI] = useReducer(update => update + 1, 0);
 
     const updateSetting = useCallback((setting) => {
-        if (setting._id) {
-            SettingsCollection.update(setting._id, { $set: { ...setting } });
+        if (!setting._id) {
+            setting._id = uniqid();
+
+            SettingsCollection.update(display_rules_setting._id, {
+                $set: {
+                    value: [...display_rules_setting.value, setting]
+                }
+            });
         } else {
-            SettingsCollection.insert(setting);
+            SettingsCollection.update(display_rules_setting._id, {
+                $set: {
+                    value: display_rules_setting.value.map(display_rule => {
+                        if (display_rule._id === setting._id) {
+                            return setting;
+                        }
+                        return display_rule;
+                    })
+                }
+            });
         }
 
         setEditedSetting(null);
         setCreatedSetting(null);
-    }, [editedSetting]);
+    }, [editedSetting, display_rules_setting]);
 
     const deleteSetting = useCallback((setting) => {
-        SettingsCollection.remove(setting._id);
+        SettingsCollection.update(display_rules_setting._id, {
+            $set: {
+                value: display_rules_setting.value.filter(display_rule => display_rule._id !== setting._id)
+            }
+        });
         setRefershUI();
-    }, [editedSetting]);
+    }, [editedSetting, display_rules_setting]);
 
     useEffect(() => setCreatedSetting(null), [editedSetting]);
     useEffect(() => setEditedSetting(null), [createdSetting]);
@@ -40,7 +60,9 @@ export const Settings = () => {
                     <h3>Display rules</h3>
                     <span style={{ fontSize: "0.75rem", fontStyle: "italic" }}>rules are applied in display order</span>
                     <br/>
-                    {settings.map((setting, idx) => (
+                    {display_rules_setting
+                    && Array.isArray(display_rules_setting.value) 
+                    && display_rules_setting.value.map((setting, idx) => (
                         <div
                             className="flex_vertical"
                             key={`setting_${idx}`}

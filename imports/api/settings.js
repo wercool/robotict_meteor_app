@@ -3,6 +3,12 @@ import uniqid from 'uniqid';
 
 export const SettingsCollection = new Mongo.Collection('settings');
 
+SettingsCollection.allow({
+    insert: (userId, doc) => true,
+    update: (userId, doc, fieldNames, modifier) => true,
+    remove: (userId, doc) => true
+});
+
 /**
  * Prepare settings collection persist to Mongo from local JSON
  * @param {*} replace set to true to reload from local JSON file

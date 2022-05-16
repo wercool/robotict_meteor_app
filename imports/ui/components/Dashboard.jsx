@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Table } from '../widgets/table/Table';
 import { SettingsCollection } from '../../api/settings';
@@ -64,12 +65,25 @@ export const Dashboard = () => {
     const onRangeChangeCallback = useCallback(range => {
         const number_range_entry = getSettingByName('number_range');
         if (number_range_entry) {
-            SettingsCollection.update(number_range_entry._id, {
-                $set: {
-                    value: {
-                        ...number_range_entry.value,
-                        range: range.map(Math.round)
-                    }
+            // SettingsCollection.update(number_range_entry._id, {
+            //     $set: {
+            //         value: {
+            //             ...number_range_entry.value,
+            //             range: range.map(Math.round)
+            //         }
+            //     }
+            // });
+
+            const setting = {
+                ...number_range_entry.value,
+                range: range.map(Math.round)
+            }
+
+            Meteor.call('setting.update.by._id', { _id: number_range_entry._id, setting }, error => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log('Number range safely updated');
                 }
             });
         }
